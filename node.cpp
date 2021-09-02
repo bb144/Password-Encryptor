@@ -1,7 +1,9 @@
 #include "node.hpp"
 
 node::node() {
-		
+	userID = "";
+	password = "";
+	next = nullptr;	
 }
 
 node::node(node* n) {
@@ -13,16 +15,15 @@ node::~node () {
 }
 
 std::string node::getID() {
-	return "temp";
+	return userID;
 }
 
 std::string node::getPass() {
-	return "temp";
+	return password;
 }
 
 node* node::getNext() {
-	node* n = new node();
-	return n;
+	return next;
 }
 
 void node::setID(std::string s) {
