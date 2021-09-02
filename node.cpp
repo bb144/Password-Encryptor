@@ -7,7 +7,9 @@ node::node() {
 }
 
 node::node(node* n) {
-
+	userID = n->getID();
+	password = n->getPass();
+	next = n->getNext();
 }
 
 node::~node () {
@@ -27,13 +29,13 @@ node* node::getNext() {
 }
 
 void node::setID(std::string s) {
-	
+	userID = s;
 }
 
 void node::setPass(std::string p) {
-	
+	password = p;
 }
 
 void node::setNext(node* n) {
-	
+	next = n;
 }
