@@ -24,7 +24,7 @@ int DataHashing::hash(std::string s) {
 }
 
 void DataHashing::hashNode(node* user) {
-
+	insert(user, hash(user->getID()));
 }
 
 void DataHashing::insert(node* user, int index) {

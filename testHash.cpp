@@ -109,9 +109,47 @@ void testLookup() {
 			<< " tasks successful.\n";
 }
 
+void testHashNode() {
+	const int NUMTASKS = 2;
+	int passedTasks = 0;
+
+	std::cout << "Running hash node test:\n";
+	DataHashing* d = new DataHashing();
+	
+	node* a = new node();
+	node* b = new node();
+
+	a->setID("abc");
+	a->setPass("Easyasonetwothree");
+	b->setID("xyz");
+	b->setPass("Howembarrassing!");
+
+	d->hashNode(a);
+	d->hashNode(b);
+
+	if (d->lookup("abc") == a) {
+		passedTasks++;
+	}
+	else {
+		std::cout << "failed to file abc correctly.\n";
+	}
+
+	if (d->lookup("xyz") == b) {
+		passedTasks++;
+	}
+	else {
+		std::cout << "failed to file xyz correctly.\n";
+	}
+	
+	std::cout << "Hash node test completed. "
+			<< passedTasks << " / " << NUMTASKS
+			<< " tasks successful.\n";
+}
+
 int main() {
 	testDefaultConstructor();
 	testShowAll();
 	testHash();
 	testLookup();
+	testHashNode();
 }
