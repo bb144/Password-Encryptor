@@ -146,10 +146,30 @@ void testHashNode() {
 			<< " tasks successful.\n";
 }
 
+void testNewUser() {
+	const int NUMTASKS = 1;
+	int passedTasks = 0;
+
+	std::cout << "Running added user test:\n";
+	DataHashing* d = new DataHashing();
+
+	d->newUser("abc", "easyasonetwothree");
+	//could've saved a lot of time if I tested this one earlier..
+	
+	if (d->lookup("abc")->getID() == "abc") {
+		passedTasks++;
+	}
+
+	std::cout << "Added user test completed. "
+			<< passedTasks << " / " << NUMTASKS
+			<< " tasks successful.\n";
+}
+
 int main() {
 	testDefaultConstructor();
 	testShowAll();
 	testHash();
 	testLookup();
 	testHashNode();
+	testNewUser();
 }

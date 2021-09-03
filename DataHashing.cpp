@@ -32,7 +32,11 @@ void DataHashing::insert(node* user, int index) {
 }
 
 void DataHashing::newUser(std::string ID, std::string pass) {
-
+	node* user = new node();
+	user->setID(ID);
+	user->setPass(pass);
+	//probably should've made a parameterized constructor but that's fine
+	hashNode(user);
 }
 
 node* DataHashing::lookup(std::string ID) {
