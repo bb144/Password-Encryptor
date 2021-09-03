@@ -10,5 +10,8 @@ test-node: testNode.cpp node.cpp
 test-list: testList.cpp node.cpp LinkedList.cpp
 	$(CC) $(CFLAGS) testList.cpp -o test-list
 
+test-hash: testHash.cpp node.cpp LinkedList.cpp DataHashing.cpp
+	$(CC) $(CFLAGS) testHash.cpp -o test-hash
+
 clean:
 	rm -rf *.o
