@@ -1,3 +1,6 @@
+#ifndef LINKEDLIST_H_
+#define LINKEDLIST_H_
+
 #include "node.hpp"
 
 class LinkedList {
@@ -13,3 +16,4 @@ class LinkedList {
 		node* getHead();
 		void setHead(node* h);
 };
+#endif

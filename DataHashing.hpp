@@ -1,13 +1,14 @@
 #ifndef DATAHASHING_H_
 #define DATAHASHING_H_
 
+#include <array>
+
 #include "LinkedList.hpp"
 #include "node.hpp"
 
 class DataHashing {
 	private:
-		const int TABLE_SIZE = 100;
-		LinkedList*[TABLE_SIZE] table;
+		std::array<LinkedList*, 100> table;
 	public:
 		DataHashing();
 		DataHashing(DataHashing* d);
