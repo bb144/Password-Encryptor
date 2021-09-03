@@ -36,7 +36,18 @@ void DataHashing::newUser(std::string ID, std::string pass) {
 }
 
 node* DataHashing::lookup(std::string ID) {
-	return nullptr;
+	node* curr = table[hash(ID)]->getHead();
+	node* target = nullptr;
+	while (curr != nullptr) {
+		if (curr->getID() == ID) {
+			target = curr;
+			curr = nullptr;
+		}
+		else {
+			curr = curr->getNext();
+		}
+	}
+	return target;
 }
 
 void DataHashing::showAll() {

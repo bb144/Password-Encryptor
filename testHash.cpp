@@ -74,10 +74,44 @@ void testHash() {
 			<< " tasks successful.\n";
 }
 
+void testLookup() {
+	const int NUMTASKS = 1;
+	int passedTasks = 0;
 
+	std::cout << "Running lookup test:\n";
+	DataHashing* d = new DataHashing();
+
+	node* a = new node();
+	a->setID("abc");
+	a->setPass("easyasonetwothree");
+
+	node* b = new node();
+	b->setID("What");
+	b->setPass("Whatisthis??");
+
+	node* g = new node();
+	g->setID("garbo");
+	g->setPass("Thisistrash");
+
+	d->insert(g, 64);
+	d->insert(a, d->hash("abc"));
+	d->insert(b, 64);
+
+	if (d->lookup("abc") == a) {
+		passedTasks++;
+	}
+	else {
+		std::cout << "Failed to find abc.\n";
+	}
+
+	std::cout << "Lookup test completed. "
+			<< passedTasks << " / " << NUMTASKS
+			<< " tasks successful.\n";
+}
 
 int main() {
 	testDefaultConstructor();
 	testShowAll();
 	testHash();
+	testLookup();
 }
