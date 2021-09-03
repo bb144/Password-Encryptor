@@ -8,12 +8,14 @@
 
 class DataHashing {
 	private:
+		const int TABLE_SIZE = 100;
 		std::array<LinkedList*, 100> table;
 	public:
 		DataHashing();
 		DataHashing(DataHashing* d);
 		~DataHashing();
-		void hash(node* user);
+		int hash(std::string s);
+		void hashNode(node* user);
 		void insert(node* user, int index);
 		void newUser(std::string ID, std::string pass);
 		node* lookup(std::string ID);

@@ -48,7 +48,36 @@ void testShowAll() {
 		<< "bugs and roadrunner | and naruto\n";
 }
 
+void testHash() {
+	const int NUMTASKS = 2;
+	int passedTasks = 0;
+
+	std::cout << "Running hash test:\n";
+	DataHashing* d = new DataHashing();
+
+	if (d->hash("abc") == 64) {
+		passedTasks++;
+	}
+	else {
+		std::cout << "abc hashed to wrong index\n";
+	}
+
+	if (d->hash("xyz") == 40) {
+		passedTasks++;
+	}
+	else {
+		std::cout << "xyz hashed to wrong index\n";
+	}
+
+	std::cout << "Hash test completed. "
+			<< passedTasks << " / " << NUMTASKS
+			<< " tasks successful.\n";
+}
+
+
+
 int main() {
 	testDefaultConstructor();
 	testShowAll();
+	testHash();
 }

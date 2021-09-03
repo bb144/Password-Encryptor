@@ -14,7 +14,16 @@ DataHashing::~DataHashing() {
 
 }
 
-void DataHashing::hash(node* user) {
+int DataHashing::hash(std::string s) {
+	long unsigned int hashValue = 1;
+	for (long unsigned int i = 0; i < s.size(); i++) {
+		hashValue *= s.at(i) * (i + 1);
+	}
+	hashValue %= TABLE_SIZE;
+	return hashValue;
+}
+
+void DataHashing::hashNode(node* user) {
 
 }
 
