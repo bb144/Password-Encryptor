@@ -18,7 +18,7 @@ class DataReader {
 	void generatePassword(int passwordLength);
 	std::string encryptPassword(std::string password);
 	void storeData(std::string fileName);
-	char encryptChar(int index, int letter);
+	char encryptChar(int index, char letter);
 };
 
 #endif

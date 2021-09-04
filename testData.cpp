@@ -9,14 +9,14 @@ void testDefaultConstructor() {
 	std::cout << "Running Default Constructor Test:\n";
 	DataReader* d = new DataReader();
 
-	if(d->encryptChar(0,0) == 'j') {
+	if(d->encryptChar(0,'a') == 'j') {
 		passedTasks++;
 	}
 	else {
 		std::cout << "first row returned " << d->encryptChar(0,0) 
 			<< " instead of j\n";
 	}
-	if (d->encryptChar(0,25) == 'i') {
+	if (d->encryptChar(0,'z') == 'i') {
 		passedTasks++;
 	}
 	else {
@@ -24,7 +24,7 @@ void testDefaultConstructor() {
 			<< d->encryptChar(0,25) << " instead of i\n";
 ;
 	}
-	if (d->encryptChar(8,25) == 'm') {
+	if (d->encryptChar(8,'z') == 'm') {
 		passedTasks++;
 	}
 	else {
@@ -38,9 +38,31 @@ void testDefaultConstructor() {
 			<< " tasks successful.\n";
 }
 
+void testEncryptPassword() {
+	const int NUMTASKS = 1;
+	int passedTasks = 0;
+
+	std::cout << "Running Password Encryption Test:\n";
+	DataReader* e = new DataReader();
+	std::string pass = "passwords";
+
+	if (e->encryptPassword(pass) == "yofwomdrf") {
+		passedTasks++;
+	}
+	else {
+		std::cout << "encryptPassword returned " 
+			<< e->encryptPassword(pass)
+			<< " instead of yofwomdrf\n";
+	}
+
+	std::cout << "Password encryption test completed. "
+                        << passedTasks << " / " << NUMTASKS
+                        << " tasks successful.\n";
+}
+
 int main () {
 	testDefaultConstructor();
-//	testEncryptPassword();
+	testEncryptPassword();
 
 	return 0;
 };

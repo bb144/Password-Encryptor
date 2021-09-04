@@ -31,13 +31,16 @@ void DataReader::generatePassword(int passwordLength) {
 }
 
 std::string DataReader::encryptPassword(std::string password) {
-	return "";
+	for (unsigned long int i = 0; i < password.length(); i++) {
+		password.at(i) = encryptChar(i, password.at(i));
+	}
+	return password;
 }
 
 void DataReader::storeData(std::string fileName) {
 
 }
 
-char DataReader::encryptChar(int index, int letter) {
-	return encryptionKey[index][letter];
+char DataReader::encryptChar(int index, char letter) {
+	return encryptionKey[index][letter - 97];
 }
