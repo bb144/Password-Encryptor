@@ -140,12 +140,10 @@ char DataReader::decryptChar(int index, char letter) {
 void DataReader::login(std::string userID, std::string password) {
 	std::string encryptedPass = encryptPassword(password);
 	if (encryptedPass == hashTable->lookup(userID)->getPass()) {
-		std::cout << "Login for: " << userID << " " << password 
-			<< " successful.\n";
+		std::cout << userID << "\t" << password << "\tmatch\n";
 	}
 	else {
-		std::cout << "Invalid userID or password for " << userID << " "
-			<< password << "\n";
+		std::cout << userID << "\t" << password << "\tno match\n";
 	}
 }
 
