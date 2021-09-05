@@ -21,6 +21,7 @@ class DataReader {
 	DataReader(const DataReader& d);
 	~DataReader();
 	void readDataInto(std::string inFileName, std::string outFileName);
+	void encryptData(std::string inFileName, std::string outFileName);
 	std::string generatePassword();
 	std::string encryptPassword(std::string password);
 	void storeData(std::string name, std::string pass);

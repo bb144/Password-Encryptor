@@ -28,9 +28,10 @@ void DataReader::readDataInto(std::string inFileName, std::string outFileName) {
 	std::string currName = "";
 	
 	inFile.open(inFileName);
+	outFile.open(outFileName);
+
 	if (inFile.is_open()) {
 		inFile >> currName;
-		outFile.open(outFileName);
 		storeData(currName, generatePassword());
 
 		while (!inFile.eof()) {
@@ -43,6 +44,28 @@ void DataReader::readDataInto(std::string inFileName, std::string outFileName) {
 				if (currName != "88799") {
 					storeData(currName, generatePassword());
 				}
+			}
+		}
+	}
+	inFile.close();
+	outFile.close();
+}
+
+void DataReader::encryptData(std::string inFileName, std::string outFileName) {
+	std::string currName = "";
+	std::string currPass = "";
+	std::string prevName;
+	
+	inFile.open(inFileName);
+	outFile.open(outFileName);
+
+	if(inFile.is_open()) {
+		while (!inFile.eof()) {
+			currName = prevName;
+			inFile >> currName;
+			inFile >> currPass;
+			if (currName != prevName) {
+				storeData(currName, encryptPassword(currPass));
 			}
 		}
 	}

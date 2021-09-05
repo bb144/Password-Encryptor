@@ -75,11 +75,19 @@ void testReadDataInto() {
 	std::cout << "Read data test completed. Check output files.\n";
 }
 
+void testEncryptData() {
+	std::cout << "Running encrypt data test.\n";
+	DataReader* r = new DataReader();
+	r->encryptData("rawdata.txt", "encrypteddata.txt");
+	std::cout << "Encrypt data test completed. Check output files.\n";
+}
+
 int main () {
 	testDefaultConstructor();
 	testEncryptPassword();
 	testGeneratePassword();
 	testReadDataInto();
+	testEncryptData();
 
 	return 0;
 };
