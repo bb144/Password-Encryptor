@@ -88,11 +88,11 @@ void testEncryptData() {
 void testHashAll() {
 	std::cout << "Running hashing test.\n";
 	DataReader* h = new DataReader();
-	h->hashAll("encryptedData.txt");
+	h->hashAll("encrypteddata.txt");
 
 	h->getHasher()->showAll();
 	std::cout << "should display a bunch of hashed names.\n";
-	std::cout << h->getHasher()->lookup("SMITH")->node::getID() << "\n";
+	std::cout << h->getHasher()->lookup("SMITH")->node::getPass() << "\n";
 	std::cout << "should display a 9-charater password.\n";
 	std::cout << "hashing test completed.";
 }

@@ -55,14 +55,14 @@ void testHash() {
 	std::cout << "Running hash test:\n";
 	DataHashing* d = new DataHashing();
 
-	if (d->hash("abc") == 64) {
+	if (d->hash("abc") == 553) {
 		passedTasks++;
 	}
 	else {
 		std::cout << "abc hashed to wrong index\n";
 	}
 
-	if (d->hash("xyz") == 40) {
+	if (d->hash("xyz") == 620) {
 		passedTasks++;
 	}
 	else {

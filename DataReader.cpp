@@ -89,6 +89,9 @@ void DataReader::hashAll(std::string inFileName) {
 			}
 		}
 	}
+	else {
+		std::cout << "Error, " << inFileName << "failed to open!\n";
+	}
 }
 
 std::string DataReader::generatePassword() {
