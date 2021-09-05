@@ -2,6 +2,7 @@
 #define DATAHASHING_H_
 
 #include <array>
+#include <iostream>
 
 #include "LinkedList.hpp"
 #include "node.hpp"

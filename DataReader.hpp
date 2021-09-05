@@ -6,6 +6,7 @@
 #include <time.h>
 #include <iostream>
 #include <fstream>
+#include "DataHashing.hpp"
 
 class DataReader {
 	private:
@@ -16,16 +17,19 @@ class DataReader {
 	char encryptionKey[9][26];
 	std::ifstream inFile;
 	std::ofstream outFile;
+	DataHashing* hashTable = new DataHashing();
 	public:
 	DataReader();
 	DataReader(const DataReader& d);
 	~DataReader();
 	void readDataInto(std::string inFileName, std::string outFileName);
 	void encryptData(std::string inFileName, std::string outFileName);
+	void hashAll(std::string inFileName);
 	std::string generatePassword();
 	std::string encryptPassword(std::string password);
 	void storeData(std::string name, std::string pass);
 	char encryptChar(int index, char letter);
+	DataHashing* getHasher();
 };
 
 #endif

@@ -1,6 +1,9 @@
 #include <iostream>
 
-#include "DataReader.cpp"
+#include "DataReader.hpp"
+#include "DataHashing.hpp"
+#include "LinkedList.hpp"
+#include "node.hpp"
 
 void testDefaultConstructor() {
 	const int NUMTASKS = 3;
@@ -82,12 +85,25 @@ void testEncryptData() {
 	std::cout << "Encrypt data test completed. Check output files.\n";
 }
 
+void testHashAll() {
+	std::cout << "Running hashing test.\n";
+	DataReader* h = new DataReader();
+	h->hashAll("encryptedData.txt");
+
+	h->getHasher()->showAll();
+	std::cout << "should display a bunch of hashed names.\n";
+	std::cout << h->getHasher()->lookup("SMITH")->node::getID() << "\n";
+	std::cout << "should display a 9-charater password.\n";
+	std::cout << "hashing test completed.";
+}
+
 int main () {
 	testDefaultConstructor();
 	testEncryptPassword();
 	testGeneratePassword();
 	testReadDataInto();
 	testEncryptData();
+	testHashAll();
 
 	return 0;
 };

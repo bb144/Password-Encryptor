@@ -73,6 +73,24 @@ void DataReader::encryptData(std::string inFileName, std::string outFileName) {
 	outFile.close();
 }
 
+void DataReader::hashAll(std::string inFileName) {
+	std::string currName = "";
+	std::string currPass = "";
+	std::string prevName;
+
+	inFile.open(inFileName);
+	if (inFile.is_open()) {
+		while(!inFile.eof()) {
+			currName = prevName;
+                        inFile >> currName;
+                        inFile >> currPass;
+                        if (currName != prevName) {
+				hashTable->newUser(currName, currPass);
+			}
+		}
+	}
+}
+
 std::string DataReader::generatePassword() {
 	std::string password = "";
 	std::string currChar;
@@ -98,4 +116,9 @@ void DataReader::storeData(std::string name, std::string pass) {
 
 char DataReader::encryptChar(int index, char letter) {
 	return encryptionKey[index][letter - 'a'];
+}
+
+DataHashing* DataReader::getHasher() {
+	hashTable->showAll();
+	return hashTable;
 }
