@@ -60,9 +60,26 @@ void testEncryptPassword() {
                         << " tasks successful.\n";
 }
 
+void testGeneratePassword() {
+	std::cout << "Running password generation test.\n";
+	DataReader* g = new DataReader();
+	std::cout << g->generatePassword() << "\n";
+	std::cout << g->generatePassword() << "\n";
+	std::cout << "Should generate 9 random characters a-z twice.\n";
+}
+
+void testReadDataInto() {
+	std::cout << "Running read data test.\n";
+	DataReader* r = new DataReader();
+	r->readDataInto("names.txt", "rawdata.txt");
+	std::cout << "Read data test completed. Check output files.\n";
+}
+
 int main () {
 	testDefaultConstructor();
 	testEncryptPassword();
+	testGeneratePassword();
+	testReadDataInto();
 
 	return 0;
 };
