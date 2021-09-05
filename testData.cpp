@@ -90,11 +90,58 @@ void testHashAll() {
 	DataReader* h = new DataReader();
 	h->hashAll("encrypteddata.txt");
 
-	h->getHasher()->showAll();
-	std::cout << "should display a bunch of hashed names.\n";
+//	h->getHasher()->showAll();
+//	std::cout << "should display a bunch of hashed names.\n";
 	std::cout << h->getHasher()->lookup("SMITH")->node::getPass() << "\n";
 	std::cout << "should display a 9-charater password.\n";
-	std::cout << "hashing test completed.";
+	std::cout << "hashing test completed.\n";
+}
+
+void testDecryption() {
+	const int NUMTASKS = 2;
+	int passedTasks = 0;
+
+	std::cout << "Running decryption test.\n";
+	DataReader* d = new DataReader();
+	d->hashAll("encrypteddata.txt");
+
+	if (d->decrypt("jonesymon") == "aaaaaaaaa") {
+		passedTasks++;
+	}
+	else {
+		std::cout << "jonesymon decrypted as " 
+			<< d->decrypt("jonesymon");
+	}
+	if (d->decrypt("aaaaaaaaa") == "rmnwicomn") {
+		passedTasks++;
+	}
+	else {
+		std::cout << "aaaaaaaaa decrypted as " 
+			<< d->decrypt("aaaaaaaaa");
+	}
+
+	std::cout << "Password decryption test completed. "
+                        << passedTasks << " / " << NUMTASKS
+                        << " tasks successful.\n";
+}
+
+void testLogin() {
+	std::cout << "Running Login test:\n";
+
+	DataReader* l = new DataReader();
+
+	l->hashAll("encrypteddata.txt");
+
+	l->login("SMITH", 
+			l->decrypt(l->getHasher()->lookup("SMITH")->getPass()));
+
+	std::cout << "login should be successful.\n";
+
+	l->login("SMITH", "wrongPassword");
+
+	std::cout << "login should be unsuccessful.\n";
+
+	std::cout << "login test complete.\n";
 }
 
 int main () {
@@ -104,6 +151,8 @@ int main () {
 	testReadDataInto();
 	testEncryptData();
 	testHashAll();
+	testDecryption();
+	testLogin();
 
 	return 0;
 };

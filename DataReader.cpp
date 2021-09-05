@@ -2,7 +2,6 @@
 
 DataReader::DataReader() {
 	for (int j = 0; j < 9; j++) {
-		int offsetVals[9] = {9,14,13,4,18,24,12,14,13};
 		int currAscii;
 		for (int i = 0; i < 26; i++) {
 			currAscii = (('a' + i) + offsetVals[j]);
@@ -111,6 +110,13 @@ std::string DataReader::encryptPassword(std::string password) {
 	return password;
 }
 
+std::string DataReader::decrypt(std::string encryptedString) {
+	for (unsigned long int i = 0; i < encryptedString.length(); i++) {
+		encryptedString.at(i) = decryptChar(i, encryptedString.at(i));
+	}
+	return encryptedString;
+}
+
 void DataReader::storeData(std::string name, std::string pass) {
 	if (outFile.is_open()) {
 		outFile << name << " " << pass << "\n";
@@ -121,7 +127,28 @@ char DataReader::encryptChar(int index, char letter) {
 	return encryptionKey[index][letter - 'a'];
 }
 
+char DataReader::decryptChar(int index, char letter) {
+	letter -= offsetVals[index];
+
+	if (letter < 'a') {
+		letter += 26;
+	}
+
+	return letter;
+}
+
+void DataReader::login(std::string userID, std::string password) {
+	std::string encryptedPass = encryptPassword(password);
+	if (encryptedPass == hashTable->lookup(userID)->getPass()) {
+		std::cout << "Login for: " << userID << " " << password 
+			<< " successful.\n";
+	}
+	else {
+		std::cout << "Invalid userID or password for " << userID << " "
+			<< password << "\n";
+	}
+}
+
 DataHashing* DataReader::getHasher() {
-	hashTable->showAll();
 	return hashTable;
 }
